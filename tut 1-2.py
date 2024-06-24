@@ -1,6 +1,11 @@
 '''
 * Basic demonstration of running a flask app on local host.
 * The Flask projects have two folders - static(to store project related files and templates(for all html files)
+* Jinja templating in Flask allows user to use static folder path directly in html (which cream html doesn't allow)
+  Eg: keep the image.jpg in static folder
+  - <img src="static/image1.jpg>
+    or better as
+  - <img src=" {{url_for('static' , filename='image1.jpg') }} ">
 '''
 from flask import Flask #import Flask class from flask module
 
