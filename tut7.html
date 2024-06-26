@@ -1,0 +1,75 @@
+<!-- Template inheritance in jinja2 -->
+<!-- base.html (The Layout)  -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My Website{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>My Website Header</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 My Website</p>
+    </footer>
+</body>
+</html>
+
+
+<!-- child1.html (using the base layout)   -->
+{% extends "base.html" %}
+
+{% block title %}Home - My Website{% endblock %}
+
+{% block content %}
+<h2>Welcome to the Home Page</h2>
+<p>This is the home page content.</p>
+{% endblock %}
+
+
+<!-- child2.html (using the layout again -->
+{% extends "base.html" %}
+
+{% block title %}About Us - My Website{% endblock %}
+
+{% block content %}
+<h2>About Us</h2>
+<p>This is the about page content.</p>
+{% endblock %}
+
+
+<!-- rendering in flask  -->
+<!--
+
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return render_template('home.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+-->
+
+
